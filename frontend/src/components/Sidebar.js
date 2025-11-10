@@ -1,0 +1,1 @@
+import React from 'react'; import { NavLink } from 'react-router-dom'; export default function Sidebar(){ return (<aside style={{width:220,padding:12}}><div style={{fontWeight:700,marginBottom:12}}>Menu</div><NavLink to='/dashboard'>Dashboard</NavLink><br/><NavLink to='/payments'>Payments</NavLink><br/><NavLink to='/contact'>Contact</NavLink></aside>); }

@@ -1,0 +1,1 @@
+import React from 'react'; export default function Footer(){ return (<div><div style={{fontWeight:600}}>Sangil Water</div><div className='small'>Portal demo</div></div>); }
