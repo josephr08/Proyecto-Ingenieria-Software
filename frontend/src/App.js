@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import Dashboard from './components/Dashboard';
-import Receipts from './components/Receipts';
-import Payments from './components/Payments';
-import Contact from './components/Contact';
-import AdminDashboard from './components/AdminDashboard';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Receipts from './pages/Receipts';
+import Payments from './pages/Payments';
+import Contact from './pages/Contact';
+import AdminDashboard from './pages/AdminDashboard';
 
 // Protected Route Component for Customers
 function ProtectedRoute({ children }) {

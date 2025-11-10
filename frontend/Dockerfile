@@ -1,26 +1,52 @@
-# debug frontend Dockerfile - temporary (prints useful info)
+##############################
+# Stage 1: Build React app
+##############################
 FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Copy package files (package.json and package-lock.json if present)
+# Copy only package files first
 COPY package*.json ./
 
-# ensure we are in a build environment that installs devDependencies
+# Install dependencies
 ENV NODE_ENV=development
-ENV NPM_CONFIG_LOGLEVEL=verbose
+RUN npm install --legacy-peer-deps
 
-# Install exact deps, allowing legacy peer deps (prints verbose output)
-RUN npm ci --legacy-peer-deps
+# Force the correct AJV + ajv-keywords versions (fix for react-scripts builds)
+RUN npm install ajv@6.12.6 ajv-keywords@3.5.2 --save-exact --legacy-peer-deps
 
-# Print what got installed and some environment info for debugging
-RUN echo "===== node version =====" && node -v \
-    && echo "===== npm version =====" && npm -v \
-    && echo "===== NODE_ENV =====" && node -e "console.log(process.env.NODE_ENV)" \
-    && echo "===== ls node_modules (top) =====" && ls -la node_modules || true \
-    && echo "===== ls node_modules/.bin =====" && ls -la node_modules/.bin || true \
-    && echo "===== npx react-scripts (version or error) =====" && npx --no-install react-scripts --version || true \
-    && echo "===== npm ls react-scripts (tree) =====" && npm ls react-scripts --all || true \
-    && echo "===== package.json content =====" && cat package.json
+# Copy the rest of the app
+COPY . .
 
-# Stop here on purpose (we will not run the build yet)
+# Build the React app
+RUN npm run build
+
+##############################
+# Stage 2: Serve with Nginx
+##############################
+FROM nginx:1.25-alpine
+
+# Remove default nginx files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy compiled React app from build stage
+COPY --from=build /app/build /usr/share/nginx/html
+
+# React Router friendly nginx config
+COPY <<EOF /etc/nginx/conf.d/default.conf
+server {
+  listen 80;
+  server_name localhost;
+
+  root /usr/share/nginx/html;
+  index index.html;
+
+  location / {
+    try_files \$uri /index.html;
+  }
+}
+EOF
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
