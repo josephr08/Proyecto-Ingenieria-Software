@@ -15,9 +15,9 @@ export default function Receipts() {
 
         // Demo data
         setReceipts([
-            { id: 1, month: "October 2024", consumption: 185, rate: 2850, total: 527250, status: "paid", dueDate: "2024-10-15", paidDate: "2024-10-12" },
-            { id: 2, month: "November 2024", consumption: 192, rate: 2850, total: 547200, status: "pending", dueDate: "2024-11-15", paidDate: null },
-            { id: 3, month: "September 2024", consumption: 178, rate: 2800, total: 498400, status: "paid", dueDate: "2024-09-15", paidDate: "2024-09-14" },
+            { id: 1, month: "October 2025", consumption: 185, rate: 2850, total: 527250, status: "paid", dueDate: "2025-10-15", paidDate: "2025-10-12" },
+            { id: 2, month: "November 2025", consumption: 192, rate: 2850, total: 547200, status: "pending", dueDate: "2025-11-15", paidDate: null },
+            { id: 3, month: "September 2025", consumption: 178, rate: 2800, total: 498400, status: "paid", dueDate: "2025-09-15", paidDate: "2025-09-14" },
         ]);
     }, [navigate]);
 
@@ -25,6 +25,46 @@ export default function Receipts() {
         localStorage.clear();
         navigate("/");
     };
+
+    //download receipt as PDF (dummy function)
+
+
+    async function downloadReceiptPDF(receiptId) {
+        try {
+            const token = localStorage.getItem("token");
+
+            const response = await axios.get(
+                `${process.env.REACT_APP_API_URL}/api/receipts/${receiptId}/pdf`,
+                {
+                    responseType: "blob", // VERY IMPORTANT for PDF
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            // Create a Blob from the PDF stream
+            const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+
+            // Create a link to trigger download
+            const url = window.URL.createObjectURL(pdfBlob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `receipt-${receiptId}.pdf`;
+
+            document.body.appendChild(link);
+            link.click();
+
+            // Cleanup
+            link.remove();
+            window.URL.revokeObjectURL(url);
+
+        } catch (error) {
+            console.error("Error downloading PDF:", error);
+            alert("❌ Could not download receipt PDF. Check console for details.");
+        }
+    }
+
 
     return (
         <div className="page-wrapper">
@@ -84,8 +124,9 @@ export default function Receipts() {
                                 <div className="detail-card">
                                     <div className="detail-header">
                                         <h2>Receipt Details</h2>
-                                        <button className="download-btn">📥 Download PDF</button>
+                                        <button className="download-btn" onClick={() => downloadReceiptPDF(receipts.id)}>📥 Download PDF</button>
                                     </div>
+
 
                                     <div className="company-info">
                                         <h3>Sangil Water Services</h3>
@@ -169,7 +210,9 @@ export default function Receipts() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
+
+
 
             <style jsx>{`
                 .page-wrapper {
@@ -498,6 +541,6 @@ export default function Receipts() {
                     }
                 }
             `}</style>
-        </div>
+        </div >
     );
 }
