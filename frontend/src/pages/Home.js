@@ -39,12 +39,7 @@ export default function Home() {
                                 <p className="small-text">Demo Accounts:</p>
                                 <div className="demo-grid">
                                     <div className="demo-badge">
-                                        <span className="badge-label">Customer</span>
-                                        <span className="badge-value">juanchito@gmail.com / juanchito123</span>
-                                    </div>
-                                    <div className="demo-badge">
-                                        <span className="badge-label">Admin</span>
-                                        <span className="badge-value">joseph@admin.com / joseph456</span>
+
                                     </div>
                                 </div>
                             </div>

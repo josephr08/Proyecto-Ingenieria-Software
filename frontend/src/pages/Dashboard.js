@@ -66,11 +66,11 @@ export default function Dashboard() {
                         <div style={{ ...styles.statCard, ...styles.statCardPrimary }}>
                             <div style={styles.statIcon}>📊</div>
                             <div style={styles.statContent}>
-                                <div style={styles.statLabel}>This Week</div>
+                                <div style={styles.statLabel}>Esta semana</div>
                                 <div style={styles.statValue}>
                                     {loading ? "..." : `${stats.week} m³`}
                                 </div>
-                                <div style={{ ...styles.statChange, color: '#10b981' }}>↑ 5% from last week</div>
+                                <div style={{ ...styles.statChange, color: '#10b981' }}>↑ 5% desde la semana pasada</div>
                             </div>
                         </div>
 
@@ -81,41 +81,41 @@ export default function Dashboard() {
                                 <div style={styles.statValue}>
                                     {loading ? "..." : `${stats.month} m³`}
                                 </div>
-                                <div style={{ ...styles.statChange, color: '#ef4444' }}>↓ 2% from last month</div>
+                                <div style={{ ...styles.statChange, color: '#ef4444' }}>↓ 2% desde el mes pasado</div>
                             </div>
                         </div>
 
                         <div style={{ ...styles.statCard, ...styles.statCardAccent }}>
                             <div style={styles.statIcon}>💰</div>
                             <div style={styles.statContent}>
-                                <div style={styles.statLabel}>Pending Balance</div>
+                                <div style={styles.statLabel}>Saldo pendiente</div>
                                 <div style={styles.statValue}>$45,200</div>
-                                <Link to="/payments" style={styles.statAction}>Pay now →</Link>
+                                <Link to="/payments" style={styles.statAction}>Paga ahora →</Link>
                             </div>
                         </div>
 
                         <div style={{ ...styles.statCard, ...styles.statCardInfo }}>
                             <div style={styles.statIcon}>🎯</div>
                             <div style={styles.statContent}>
-                                <div style={styles.statLabel}>Daily Average</div>
+                                <div style={styles.statLabel}>Promedio diario</div>
                                 <div style={styles.statValue}>6.4 m³</div>
-                                <div style={styles.statChange}>Based on this month</div>
+                                <div style={styles.statChange}>Basándonos en este mes</div>
                             </div>
                         </div>
                     </div>
 
                     <div style={styles.contentGrid}>
                         <div style={styles.chartCard}>
-                            <h3 style={styles.chartTitle}>Weekly Consumption</h3>
+                            <h3 style={styles.chartTitle}>Consumo semanal</h3>
                             <div style={styles.barChart}>
                                 {[
-                                    { day: 'Mon', value: 6.2, height: '60%' },
-                                    { day: 'Tue', value: 7.8, height: '75%' },
-                                    { day: 'Wed', value: 5.7, height: '55%' },
-                                    { day: 'Thu', value: 8.3, height: '80%' },
-                                    { day: 'Fri', value: 6.7, height: '65%' },
-                                    { day: 'Sat', value: 4.7, height: '45%' },
-                                    { day: 'Sun', value: 4.1, height: '40%' }
+                                    { day: 'Lun', value: 6.2, height: '60%' },
+                                    { day: 'Mar', value: 7.8, height: '75%' },
+                                    { day: 'Mier', value: 5.7, height: '55%' },
+                                    { day: 'Jue', value: 8.3, height: '80%' },
+                                    { day: 'Vie', value: 6.7, height: '65%' },
+                                    { day: 'Sab', value: 4.7, height: '45%' },
+                                    { day: 'Dom', value: 4.1, height: '40%' }
                                 ].map((item, idx) => (
                                     <div key={idx} style={styles.barContainer}>
                                         <div style={{ ...styles.bar, height: item.height }}>
@@ -132,22 +132,22 @@ export default function Dashboard() {
                             <Link to="/receipts" style={styles.actionItem}>
                                 <div style={styles.actionIcon}>🧾</div>
                                 <div>
-                                    <div style={styles.actionTitle}>View Receipts</div>
-                                    <div style={styles.actionDesc}>Check billing history</div>
+                                    <div style={styles.actionTitle}>Mirar recibos</div>
+                                    <div style={styles.actionDesc}>Consultar historial de facturación</div>
                                 </div>
                             </Link>
                             <Link to="/payments" style={styles.actionItem}>
                                 <div style={styles.actionIcon}>💳</div>
                                 <div>
-                                    <div style={styles.actionTitle}>Make Payment</div>
-                                    <div style={styles.actionDesc}>Pay your bills online</div>
+                                    <div style={styles.actionTitle}>Pagos</div>
+                                    <div style={styles.actionDesc}>Paga tus facturas en línea</div>
                                 </div>
                             </Link>
                             <Link to="/contact" style={styles.actionItem}>
                                 <div style={styles.actionIcon}>💬</div>
                                 <div>
-                                    <div style={styles.actionTitle}>Contact Support</div>
-                                    <div style={styles.actionDesc}>Get help quickly</div>
+                                    <div style={styles.actionTitle}>Contactanos</div>
+                                    <div style={styles.actionDesc}>Obtén ayuda rápidamente</div>
                                 </div>
                             </Link>
                         </div>

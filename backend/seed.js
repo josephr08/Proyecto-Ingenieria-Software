@@ -15,7 +15,7 @@ const seed = async () => {
     await pool.query(`
       INSERT INTO users (email, password_hash, role, name, phone, address) 
       VALUES 
-        ('juanchito@gmail.com', $1, 'customer', 'Juan Pérez', '+57 300 123 4567', 'Calle 10 #20-30, Sangil'),
+        ('juanchito@gmail.com', $1, 'customer', 'Juan Hernandez', '+57 300 123 4567', 'Calle 10 #20-30, Sangil'),
         ('joseph@admin.com', $2, 'admin', 'Joseph Admin', '+57 310 555 0001', 'Admin Office'),
         ('rodolfito@gmail.com', $3, 'customer', 'Rodolfo García', '+57 310 987 6543', 'Carrera 5 #15-25, Sangil')
       ON CONFLICT (email) DO NOTHING;
@@ -47,15 +47,15 @@ const seed = async () => {
         await pool.query(`
           INSERT INTO receipts (user_id, billing_month, consumption, rate, total, status, due_date, paid_date)
           VALUES 
-            ($1, 'October 2024', 185, 2850, 527250, 'paid', '2024-10-15', '2024-10-12'),
-            ($1, 'September 2024', 178, 2800, 498400, 'paid', '2024-09-15', '2024-09-14')
+            ($1, 'October 2025', 185, 2850, 527250, 'paid', '2025-10-15', '2025-10-12'),
+            ($1, 'September 2025', 178, 2800, 498400, 'paid', '2025-09-15', '2025-09-14')
           ON CONFLICT DO NOTHING;
         `, [juanId]);
 
         // Insert pending receipt
         await pool.query(`
           INSERT INTO receipts (user_id, billing_month, consumption, rate, total, status, due_date)
-          VALUES ($1, 'November 2024', 192, 2850, 547200, 'pending', '2024-11-15')
+          VALUES ($1, 'November 2025', 192, 2850, 547200, 'pending', '2025-11-15')
           ON CONFLICT DO NOTHING;
         `, [juanId]);
 
@@ -81,7 +81,7 @@ const seed = async () => {
         await pool.query(`
           INSERT INTO receipts (user_id, billing_month, consumption, rate, total, status, due_date, paid_date)
           VALUES 
-            ($1, 'October 2024', 152, 2850, 433200, 'paid', '2024-10-15', '2024-10-13')
+            ($1, 'October 2025', 152, 2850, 433200, 'paid', '2025-10-15', '2025-10-13')
           ON CONFLICT DO NOTHING;
         `, [rodoId]);
 

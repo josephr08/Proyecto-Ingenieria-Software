@@ -41,14 +41,14 @@ export default function Register() {
             <div className="auth-container">
                 <div className="auth-card">
                     <div className="auth-header">
-                        <Link to="/" className="back-link">← Back to Home</Link>
-                        <h2>Create Account</h2>
-                        <p className="auth-subtitle">Join Sangil Water customer portal</p>
+                        <Link to="/" className="back-link">← Regreso a pagina de inicio</Link>
+                        <h2>Crear Cuenta</h2>
+                        <p className="auth-subtitle">Registrate en el portal de Sangil</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="auth-form">
                         <div className="form-group">
-                            <label>Full Name</label>
+                            <label>Nombre completo </label>
                             <input
                                 type="text"
                                 name="name"
@@ -61,7 +61,7 @@ export default function Register() {
                         </div>
 
                         <div className="form-group">
-                            <label>Email Address</label>
+                            <label>Correo electronico</label>
                             <input
                                 type="email"
                                 name="email"
@@ -75,7 +75,7 @@ export default function Register() {
 
                         <div className="form-row">
                             <div className="form-group">
-                                <label>Phone Number</label>
+                                <label>Numero telefonico</label>
                                 <input
                                     type="tel"
                                     name="phone"
@@ -88,7 +88,7 @@ export default function Register() {
                             </div>
 
                             <div className="form-group">
-                                <label>Password</label>
+                                <label>Contrasenia</label>
                                 <input
                                     type="password"
                                     name="password"
@@ -102,7 +102,7 @@ export default function Register() {
                         </div>
 
                         <div className="form-group">
-                            <label>Address</label>
+                            <label>Dirrecion</label>
                             <input
                                 type="text"
                                 name="address"
@@ -129,7 +129,7 @@ export default function Register() {
                         </button>
 
                         <div className="auth-footer">
-                            Already have an account? <Link to="/login">Sign in</Link>
+                            Ya tienes una cuenta? <Link to="/login">Inicia sesion</Link>
                         </div>
                     </form>
                 </div>
@@ -138,10 +138,10 @@ export default function Register() {
                     <div className="visual-content">
                         <h3>Start managing your water service today</h3>
                         <ul className="feature-list">
-                            <li>✓ Track your consumption in real-time</li>
-                            <li>✓ Pay bills online securely</li>
-                            <li>✓ Access 24/7 support</li>
-                            <li>✓ View complete billing history</li>
+                            <li>✓ Controla tu consumo en tiempo real.</li>
+                            <li>✓ Paga facturas online seguramente</li>
+                            <li>✓ Accesso 24/7 </li>
+                            <li>✓ Ver historial de facturación completo</li>
                         </ul>
                     </div>
                 </div>

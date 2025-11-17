@@ -59,7 +59,7 @@ export default function AdminDashboard() {
             console.error("Error loading tickets:", err);
             // Fallback demo data
             setSupportTickets([
-                { id: 1, customer_name: "Juan Pérez", subject: "Billing Question", message: "Why is my bill higher this month?", status: "open", date: "2024-11-05" }
+                { id: 1, customer_name: "Juan Pérez", subject: "Billing Question", message: "Why is my bill higher this month?", status: "open", date: "2025-11-05" }
             ]);
         }
     };

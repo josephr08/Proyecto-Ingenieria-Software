@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -41,64 +41,60 @@ function AdminRoute({ children }) {
     return children;
 }
 
-function App() {
+export default function App() {
     return (
-        <Router>
-            <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+        <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-                {/* Customer Protected Routes */}
-                <Route
-                    path="/dashboard"
-                    element={
-                        <ProtectedRoute>
-                            <Dashboard />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/receipts"
-                    element={
-                        <ProtectedRoute>
-                            <Receipts />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/payments"
-                    element={
-                        <ProtectedRoute>
-                            <Payments />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/contact"
-                    element={
-                        <ProtectedRoute>
-                            <Contact />
-                        </ProtectedRoute>
-                    }
-                />
+            {/* Customer Protected Routes */}
+            <Route
+                path="/dashboard"
+                element={
+                    <ProtectedRoute>
+                        <Dashboard />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/receipts"
+                element={
+                    <ProtectedRoute>
+                        <Receipts />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/payments"
+                element={
+                    <ProtectedRoute>
+                        <Payments />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/contact"
+                element={
+                    <ProtectedRoute>
+                        <Contact />
+                    </ProtectedRoute>
+                }
+            />
 
-                {/* Admin Protected Routes */}
-                <Route
-                    path="/admin/dashboard"
-                    element={
-                        <AdminRoute>
-                            <AdminDashboard />
-                        </AdminRoute>
-                    }
-                />
+            {/* Admin Protected Routes */}
+            <Route
+                path="/admin/dashboard"
+                element={
+                    <AdminRoute>
+                        <AdminDashboard />
+                    </AdminRoute>
+                }
+            />
 
-                {/* Catch-all redirect */}
-                <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-        </Router>
+            {/* Catch-all redirect */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     );
 }
-
-export default App;
